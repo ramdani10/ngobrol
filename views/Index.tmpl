@@ -1,0 +1,19 @@
+{{ define "Index" }}
+    {{ template "Header" . }}
+    <main role="main" class="container">
+        <h1 class="text-center">Ngobrol</h1>
+        <h3>Your Message Here ...</h3>
+        <ul id="output" class="list-group">
+            {{ range . }}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm">
+                            {{ .Message }}
+                        </div>
+                    </div>
+                </li>
+            {{ end }}
+        </ul>
+    </main>
+    {{ template "Footer" . }}
+{{ end }}

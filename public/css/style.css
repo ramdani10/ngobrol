@@ -1,0 +1,46 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.navbar {
+    height: 55px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 55px;
+    line-height: 55px; /* Vertically center the text there */
+    background-color: #f5f5f5;
+}
+
+body > .container {
+    padding: 55px 15px 0;
+}
+
+header .nav-item .nav-link>.img-avatar {
+    height: 35px;
+    margin: 0 10px;
+}
+
+.avatar>img, .img-avatar, .img-circle {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50em;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+code {
+    font-size: 80%;
+}
