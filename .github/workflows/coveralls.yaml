@@ -1,0 +1,34 @@
+name: Code Coverage
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Test with Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure git for private modules
+        env:
+          USER: ${{ secrets.GH_USER }}
+          TOKEN: ${{ secrets.GH_TOKEN }}
+        run: git config --global url."https://${USER}:${TOKEN}@github.com".insteadOf "https://github.com"
+      - name: Set up Go
+        uses: actions/setup-go@v1
+        with:
+          go-version: "1.13"
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          go mod download
+      - name: Run Unit tests
+        run: |
+          go test -race -covermode atomic -coverprofile=profile.cov ./...
+      - name: Send coverage
+        env:
+          COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          GO111MODULE=off go get github.com/mattn/goveralls
+          $(go env GOPATH)/bin/goveralls -coverprofile=profile.cov -service=github
